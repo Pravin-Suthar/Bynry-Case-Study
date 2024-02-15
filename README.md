@@ -1,70 +1,55 @@
 Bynry Case Study Documentation
-Backend
-The main repository contains two folders:
 
+
+The main repository contains two folders:
 Backend: Contains the backend code.
 Frontend: Contains the frontend code.
+
+
+
 Starting Backend:
-Navigate to the backend folder: cd backend.
+1. Navigate to the backend folder: cd backend.
+2. Inside the backend folder, locate the config folder which contains the middleware for the database connection.
+3. Adjust the credentials in the config.js file according to your local MySQL database:
 
-Inside the backend folder, locate the config folder which contains the middleware for the database connection.
-
-
-Adjust the credentials in the config.js file according to your local MySQL database:
-module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "root",
-  DB: "Bynry", <--  add the name of the database where you want to sequalize the model
-  dialect: "mysql", 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-};
+![alt text](image.png)
 
 
-Run the backend server by typing npm run server in the terminal.
+4. Run the backend server by typing npm run server in the terminal.
+5. The server should now be running. Node.js version used: v20.11.0.
 
-The server should now be running. Node.js version used: v20.11.0.
 
-Running Frontend:
-Note: The frontend is written in Flutter.
 
-Ensure you have Flutter installed, version details:
+Starting Frontend:
 
-Flutter 3.16.6 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 46787ee49c (5 weeks ago) • 2024-01-09 14:36:07 -0800
-Engine • revision 3f3e560236
-Tools • Dart 3.2.3 • DevTools 2.28.4
+1. Ensure you have Flutter installed, version details:
+2. Version : Flutter 3.16.6  • Dart 3.2.3 • DevTools 2.28.4
+3. Resolve all dependencies by running flutter pub get.
+4. Connect a physical Android device with USB debugging enabled, or set up an Android emulator.
+5. Navigate to the hamburger section in VS Code and go to Run -> Run without debugging, or type flutter run in the terminal.
 
-Resolve all dependencies by running flutter pub get.
 
-Connect a physical Android device with USB debugging enabled, or set up an Android emulator.
-
-Navigate to the hamburger section in VS Code and go to Run -> Run without debugging, or type flutter run in the terminal.
 
 Functionalities Added:
 
 
+
 Backend:
-Complete MVC structured backend.
-Utilizes MySQL database.
-Middleware layer for database connectivity.
-User registration and login based on random OTP.
-GET API to fetch user data and display it on the frontend homepage.
-Sequelize and Express are used for ensuring database integrity.
+1. Complete MVC structured backend.
+2. Utilizes MySQL database.
+3. Middleware layer for database connectivity.
+4. User registration and login based on random OTP.
+5. GET API to fetch user data and display it on the frontend homepage.
+6. Sequelize and Express are used for ensuring database integrity.
 
 
 
 Frontend:
-State management using GetX.
-Utilizes both stateless and stateful widgets.
-Implements Firebase Analytics for insights into the app's usage.
-Initial plan to display Firebase Analytics specific to the user, but direct API access isn't available.
-Uses the https package for making requests.
-Implements a common color palette file for centralized theming.
-Implements common Snackbar and TextStyle files for consistency.
-Implements a robust drawer on the landing page, along with tab navigation for the homepage (may have minor layout issues to resolve).
+1. State management using GetX.
+2. Utilizes both stateless and stateful widgets.
+3. Implements Firebase Analytics for insights into the app's usage.
+4. Initial plan to display Firebase Analytics specific to the user, but direct API access isn't available.
+5. Uses the https package for making requests.
+6. Implements a common color palette file for centralized theming.
+7. Implements common Snackbar and TextStyle files for consistency.
+8. Implements a robust drawer on the landing page, along with tab navigation for the homepage (may have minor layout issues to resolve).

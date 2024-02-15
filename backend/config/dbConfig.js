@@ -2,7 +2,7 @@ module.exports = {
   HOST: "localhost",
   USER: "root",
   PASSWORD: "root",
-  DB: "Bynry",
+  DB: "Bynry", // <--  add the name of the database where you want to sequalize the model
   dialect: "mysql", 
   pool: {
     max: 5,
