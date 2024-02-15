@@ -14,12 +14,7 @@ const nodemailer = require("nodemailer");
 // API to register the user.
 exports.registerUser = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-    } = req.body; // Include all fields from the request body
+    const { firstName, lastName, email, phoneNumber } = req.body; // Include all fields from the request body
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -50,10 +45,9 @@ exports.registerUser = async (req, res) => {
   }
 };
 
-
 exports.login = async (req, res) => {
   try {
-    const { email } = req.body; 
+    const { email } = req.body;
 
     async function generateOTP(length) {
       const chars = "0123456789";
@@ -64,7 +58,7 @@ exports.login = async (req, res) => {
       }
       return otp;
     }
-    
+
     const otp = await generateOTP(6);
 
     const existingUser = await User.findOne({ where: { email: email } });
@@ -75,7 +69,7 @@ exports.login = async (req, res) => {
       if (otpRecord) {
         // If an OTP record exists, update it with the new OTP and reset the expiration time.
         otpRecord.otp = otp;
-        otpRecord.createdAt = new Date(); 
+        otpRecord.createdAt = new Date();
         await otpRecord.save();
       } else {
         // If no OTP record exists, create a new one.
@@ -85,7 +79,7 @@ exports.login = async (req, res) => {
         });
       }
       await sendOtpEmail(email, otp);
-      
+
       res.status(200).json({
         success: true,
         message: "OTP sent to your email",
@@ -101,9 +95,6 @@ exports.login = async (req, res) => {
     return res.status(400).json({ success: false, message: error.message });
   }
 };
-
-
-
 
 exports.verifyOTP = async (req, res) => {
   const { email, otp } = req.body;
@@ -144,6 +135,27 @@ exports.verifyOTP = async (req, res) => {
         message: "User not found. Kindly Register First",
       });
     }
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
+};
+
+exports.getUserDetailsById = async (req, res) => {
+  const { userId  }= req.body;
+
+  try {
+    console.log("api called");
+    const userDetails = await User.findOne({ where: { id: userId } });
+
+    if (userDetails) {
+      res.status(200).json({
+        success: true,
+        message: "User Details fetched successfully",
+        userDetails: userDetails,
+      });
+    } 
+     
+    
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
