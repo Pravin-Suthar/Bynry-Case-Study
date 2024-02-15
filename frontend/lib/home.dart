@@ -211,6 +211,10 @@ class Homepage extends StatelessWidget {
                                 ),
                                 SizedBox(height: 30),
                                 GestureDetector(
+                                  onTap: (){
+                                    userController
+                                              .loginExaminer();
+                                  },
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [

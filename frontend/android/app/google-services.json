@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "502670715253",
-    "project_id": "visualcryptography-c7c85",
-    "storage_bucket": "visualcryptography-c7c85.appspot.com"
+    "project_number": "1097189903082",
+    "project_id": "analytic-s",
+    "storage_bucket": "analytic-s.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:502670715253:android:cf4b9b1bc984147dbbcb3c",
+        "mobilesdk_app_id": "1:1097189903082:android:f60b531207d8888cb0e593",
         "android_client_info": {
           "package_name": "com.visualcryptography"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDQAR5asAH44iI1HHXpkRWCVYcIXyd7Tc4"
+          "current_key": "AIzaSyB60v36t7il1xN6wqN0ze2f11k5vUcw7GY"
         }
       ],
       "services": {

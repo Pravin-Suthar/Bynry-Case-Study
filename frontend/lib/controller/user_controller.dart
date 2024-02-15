@@ -100,10 +100,10 @@ class UserController extends GetxController {
       if (jsonData['success'] == true) {
         isOtpSend.value = false;
         Get.to(() => LandingPage());
-        userValueClearer();
+    
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setInt('userid', (jsonData['usersid']));
-
+        print(jsonData);
         successSnackBar(Get.context as BuildContext, 'Logged in successfully');
       } else {
         warningSnackBar(

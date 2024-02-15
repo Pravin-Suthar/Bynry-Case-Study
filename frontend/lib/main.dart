@@ -1,49 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:frontend/LandingPage/landing_page.dart';
 import 'package:frontend/common/design/colorPallet.dart';
-import 'package:frontend/controller/user_controller.dart';
 import 'package:frontend/home.dart';
-import 'package:frontend/login_registration/login.dart';
 import 'package:get/get.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
-// import 'package:flutter/material.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Ensure that Flutter is initialized
   await dotenv.load(fileName: '.env');
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-
-  // SharedPreferences prefs = await SharedPreferences.getInstance();
-  // String? storedToken = prefs.getString('fcmToken');
-  // print("AAAAAAAAAAAAAAAAAAAAAAAAA$storedToken");
-  // if (storedToken == null) {
-  //   String? newToken = await FirebaseMessaging.instance.getToken();
-  //   print((newToken));
-  //   await prefs.setString('fcmToken', newToken ?? '');
-  //   // Send newToken to your server for registration
-  // }
-
+  await Firebase.initializeApp(); // Initialize Firebase
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
     return ScreenUtilInit(
       designSize: const Size(390, 844),
       builder: (BuildContext BuildContext, Widget? context) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: CustomTheme.lightTheme,
-          home: Homepage(),
+          navigatorObservers: [
+            FirebaseAnalyticsObserver(analytics: analytics),
+          ],
+          home: LandingPage(),
         );
       },
     );
